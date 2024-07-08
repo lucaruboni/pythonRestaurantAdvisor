@@ -1,0 +1,10 @@
+@media screen and (max-width: 768px) {
+  .validate.form-container {
+    margin-left: 5px;
+    margin-right: 5px; }
+  .form_page.form-container {
+    border-radius: 5px; }
+  .container.thank_you {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 98%; } }

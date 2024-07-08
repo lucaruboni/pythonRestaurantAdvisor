@@ -1,0 +1,16 @@
+{
+  "name": "pythonrestaurantadvisor",
+  "version": "1.0.0",
+  "description": "This project is a FastAPI application that allows customers to fill out a feedback form for a specific restaurant. After submitting the form, the customer receives a validation code via WhatsApp. The customer needs to present this code at the restaurant to activate a special promotion. The project uses Firebase Firestore for the database and Twilio for sending WhatsApp messages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch static/scss -o static/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^9.0.0"
+  }
+}
