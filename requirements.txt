@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+firebase-admin
+twilio
+apscheduler
+jinja2
+qrcode[pil]
+python-dotenv

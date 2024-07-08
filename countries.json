@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Italy",
+        "code": "+39",
+        "flag_code": "it"
+    },
+    {
+        "name": "United States",
+        "code": "+1",
+        "flag_code": "us"
+    },
+    {
+        "name": "United Kingdom",
+        "code": "+44",
+        "flag_code": "gb"
+    },
+    {
+        "name": "France",
+        "code": "+33",
+        "flag_code": "fr"
+    },
+    {
+        "name": "Germany",
+        "code": "+49",
+        "flag_code": "de"
+    },
+    {
+        "name": "Turkey",
+        "code": "+90",
+        "flag_code": "tr"
+    },
+    {
+        "name": "Saudi Arabia",
+        "code": "+966",
+        "flag_code": "sa"
+    }
+]

@@ -1,0 +1,18 @@
+{
+    "Osteria_francescana": {
+        "name": "Osteria Francescana",
+        "twilio_number": "+14155238886",
+        "schedule_date": "2024-07-01T10:00:00",
+        "form_qr_code": "qr_Osteria_francescana.png",
+        "bg_image": "bg_osteria_francescana.jpg",
+        "logo": "logo_osteria_francescana.svg"
+    },
+    "Osteria_il_povero_diavolo": {
+        "name": "Osteria il povero diavolo",
+        "twilio_number": "+14155238886",
+        "schedule_date": "2024-07-02T10:00:00",
+        "form_qr_code": "qr_Osteria_il_povero_diavolo.png",
+        "bg_image": "bg_osteria_il_povero_diavolo.jpg",
+        "logo": "logo_osteria_il_povero_diavolo.png"
+    }
+}

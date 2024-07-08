@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate Code</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('{{ bg_image }}') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            color: #fff;
+            max-width: 500px;
+            margin: auto;
+            margin-top: 100px;
+            border-radius: 10px;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .logo {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+        .error {
+            color: red;
+            font-size: 0.9rem;
+        }
+        .success {
+            color: green;
+            font-size: 0.9rem;
+        }
+        .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="{{ logo }}" alt="Restaurant Logo" class="logo">
+        <h1 class="mb-4">Validate Your Code</h1>
+        <form id="validationForm">
+            <input type="hidden" name="restaurant_id" value="{{ restaurant_id }}">
+            <div class="form-group">
+                <label for="code">Code:</label>
+                <input type="text" id="code" name="code" class="form-control" required>
+                <div class="invalid-feedback" id="code-error"></div>
+            </div>
+            <div id="error-message" class="error"></div>
+            <div id="success-message" class="success"></div>
+            <button type="submit" class="btn btn-primary btn-block">Validate</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+    document.getElementById("validationForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+        
+        // Clear previous errors
+        document.querySelectorAll('.invalid-feedback').forEach(el => el.textContent = '');
+        document.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-invalid'));
+        document.getElementById("error-message").textContent = '';
+        document.getElementById("success-message").textContent = '';
+
+        var formData = new FormData(this);
+        var errorMessage = document.getElementById("error-message");
+        var successMessage = document.getElementById("success-message");
+
+        // Use fetch API to submit the form data via AJAX
+        fetch("/validate", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => { throw data; });
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Show success message and disable the submit button
+            document.querySelector("button[type='submit']").disabled = true;
+            successMessage.textContent = "Code validated successfully! Please enjoy your offer.";
+        })
+        .catch(error => {
+            // Display the error message near the form fields
+            if (error.detail) {
+                const errorText = error.detail;
+                if (errorText === "Invalid code" || errorText === "Code already used") {
+                    document.getElementById("code-error").textContent = errorText;
+                    document.getElementById("code").classList.add('is-invalid');
+                } else {
+                    errorMessage.textContent = "Please correct the errors above and try again.";
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
