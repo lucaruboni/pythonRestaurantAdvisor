@@ -160,6 +160,18 @@ async def validate_code(
 
     return JSONResponse(content={"detail": "Code validated successfully"}, status_code=200)
 
+@app.get("/validate/{restaurant_id}", response_class=HTMLResponse)
+async def validate_form(request: Request, restaurant_id: str):
+    if restaurant_id not in restaurants:
+        raise HTTPException(status_code=404, detail="Restaurant not found")
+    restaurant = restaurants[restaurant_id]
+    return templates.TemplateResponse("validate.html", {
+        "request": request,
+        "restaurant_id": restaurant_id,
+        "bg_image": f"/static/img/{restaurant['bg_image']}",
+        "logo": f"/static/img/{restaurant['logo']}"
+    })
+
 def send_whatsapp_message(phone_number, message):
     try:
         client.messages.create(
